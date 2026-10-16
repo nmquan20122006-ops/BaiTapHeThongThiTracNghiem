@@ -13,6 +13,7 @@ namespace HeThongThiTracNghiem
         public Form_DangKy()
         {
             InitializeComponent();
+            //test
         }
     }
 }
