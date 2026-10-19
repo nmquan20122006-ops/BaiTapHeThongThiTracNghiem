@@ -72,8 +72,11 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges38 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges39 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges40 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges41 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges42 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            lbl_TatCaMon = new Label();
             guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             lbl_TongCauDe = new Label();
             lbl_TongCauKho = new Label();
@@ -122,22 +125,23 @@
             btn_TimKiemCauHoi = new Guna.UI2.WinForms.Guna2Button();
             cbo_LocMon = new Guna.UI2.WinForms.Guna2ComboBox();
             btn_LamMoiBang = new Guna.UI2.WinForms.Guna2Button();
-            lbl_TatCaMon = new Label();
+            guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
             guna2Panel1.SuspendLayout();
             guna2Panel3.SuspendLayout();
             guna2Panel4.SuspendLayout();
             guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgv_DanhSachCauHoi).BeginInit();
+            guna2Panel5.SuspendLayout();
             SuspendLayout();
             // 
             // guna2HtmlLabel3
             // 
             guna2HtmlLabel3.BackColor = Color.Transparent;
-            guna2HtmlLabel3.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel3.Location = new Point(37, 110);
+            guna2HtmlLabel3.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2HtmlLabel3.Location = new Point(14, 25);
             guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            guna2HtmlLabel3.Size = new Size(61, 22);
+            guna2HtmlLabel3.Size = new Size(64, 22);
             guna2HtmlLabel3.TabIndex = 6;
             guna2HtmlLabel3.Text = "Môn học";
             // 
@@ -161,6 +165,17 @@
             guna2Panel1.Size = new Size(1490, 58);
             guna2Panel1.TabIndex = 7;
             guna2Panel1.Paint += guna2Panel1_Paint;
+            // 
+            // lbl_TatCaMon
+            // 
+            lbl_TatCaMon.AutoSize = true;
+            lbl_TatCaMon.BackColor = Color.Transparent;
+            lbl_TatCaMon.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_TatCaMon.Location = new Point(491, 19);
+            lbl_TatCaMon.Name = "lbl_TatCaMon";
+            lbl_TatCaMon.Size = new Size(110, 25);
+            lbl_TatCaMon.TabIndex = 40;
+            lbl_TatCaMon.Text = "Tất cả môn";
             // 
             // guna2Panel3
             // 
@@ -361,10 +376,10 @@
             tbx_NoiDung.Font = new Font("Segoe UI", 9F);
             tbx_NoiDung.ForeColor = Color.FromArgb(45, 55, 72);
             tbx_NoiDung.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            tbx_NoiDung.Location = new Point(117, 232);
+            tbx_NoiDung.Location = new Point(90, 122);
             tbx_NoiDung.Multiline = true;
             tbx_NoiDung.Name = "tbx_NoiDung";
-            tbx_NoiDung.PlaceholderText = "";
+            tbx_NoiDung.PlaceholderText = "Nội dung câu hỏi...";
             tbx_NoiDung.SelectedText = "";
             tbx_NoiDung.ShadowDecoration.CustomizableEdges = customizableEdges12;
             tbx_NoiDung.Size = new Size(369, 111);
@@ -384,10 +399,10 @@
             tbx_DapAnA.Font = new Font("Segoe UI", 9F);
             tbx_DapAnA.ForeColor = Color.FromArgb(45, 55, 72);
             tbx_DapAnA.HoverState.BorderColor = Color.FromArgb(150, 175, 230);
-            tbx_DapAnA.Location = new Point(117, 363);
+            tbx_DapAnA.Location = new Point(90, 250);
             tbx_DapAnA.Multiline = true;
             tbx_DapAnA.Name = "tbx_DapAnA";
-            tbx_DapAnA.PlaceholderText = "";
+            tbx_DapAnA.PlaceholderText = "Đáp án A của câu hỏi";
             tbx_DapAnA.SelectedText = "";
             tbx_DapAnA.ShadowDecoration.CustomizableEdges = customizableEdges14;
             tbx_DapAnA.Size = new Size(369, 36);
@@ -396,20 +411,20 @@
             // guna2HtmlLabel2
             // 
             guna2HtmlLabel2.BackColor = Color.Transparent;
-            guna2HtmlLabel2.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel2.Location = new Point(37, 178);
+            guna2HtmlLabel2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2HtmlLabel2.Location = new Point(13, 79);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            guna2HtmlLabel2.Size = new Size(51, 22);
+            guna2HtmlLabel2.Size = new Size(53, 22);
             guna2HtmlLabel2.TabIndex = 11;
             guna2HtmlLabel2.Text = "Độ khó";
             // 
             // guna2HtmlLabel4
             // 
             guna2HtmlLabel4.BackColor = Color.Transparent;
-            guna2HtmlLabel4.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel4.Location = new Point(37, 287);
+            guna2HtmlLabel4.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2HtmlLabel4.Location = new Point(13, 169);
             guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            guna2HtmlLabel4.Size = new Size(65, 22);
+            guna2HtmlLabel4.Size = new Size(68, 22);
             guna2HtmlLabel4.TabIndex = 12;
             guna2HtmlLabel4.Text = "Nội dung";
             // 
@@ -426,7 +441,7 @@
             cbo_MonHoc.Font = new Font("Segoe UI", 10F);
             cbo_MonHoc.ForeColor = Color.FromArgb(45, 55, 72);
             cbo_MonHoc.ItemHeight = 30;
-            cbo_MonHoc.Location = new Point(117, 103);
+            cbo_MonHoc.Location = new Point(90, 16);
             cbo_MonHoc.Name = "cbo_MonHoc";
             cbo_MonHoc.ShadowDecoration.CustomizableEdges = customizableEdges16;
             cbo_MonHoc.Size = new Size(369, 36);
@@ -446,7 +461,7 @@
             cbo_DoKho.Font = new Font("Segoe UI", 10F);
             cbo_DoKho.ForeColor = Color.FromArgb(45, 55, 72);
             cbo_DoKho.ItemHeight = 30;
-            cbo_DoKho.Location = new Point(117, 171);
+            cbo_DoKho.Location = new Point(92, 70);
             cbo_DoKho.Name = "cbo_DoKho";
             cbo_DoKho.ShadowDecoration.CustomizableEdges = customizableEdges18;
             cbo_DoKho.Size = new Size(129, 36);
@@ -455,40 +470,40 @@
             // guna2HtmlLabel5
             // 
             guna2HtmlLabel5.BackColor = Color.Transparent;
-            guna2HtmlLabel5.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel5.Location = new Point(37, 372);
+            guna2HtmlLabel5.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2HtmlLabel5.Location = new Point(14, 260);
             guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            guna2HtmlLabel5.Size = new Size(65, 22);
+            guna2HtmlLabel5.Size = new Size(67, 22);
             guna2HtmlLabel5.TabIndex = 15;
             guna2HtmlLabel5.Text = "Đáp án A";
             // 
             // guna2HtmlLabel6
             // 
             guna2HtmlLabel6.BackColor = Color.Transparent;
-            guna2HtmlLabel6.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel6.Location = new Point(37, 438);
+            guna2HtmlLabel6.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2HtmlLabel6.Location = new Point(14, 316);
             guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            guna2HtmlLabel6.Size = new Size(64, 22);
+            guna2HtmlLabel6.Size = new Size(66, 22);
             guna2HtmlLabel6.TabIndex = 16;
             guna2HtmlLabel6.Text = "Đáp án B";
             // 
             // guna2HtmlLabel7
             // 
             guna2HtmlLabel7.BackColor = Color.Transparent;
-            guna2HtmlLabel7.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel7.Location = new Point(37, 565);
+            guna2HtmlLabel7.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2HtmlLabel7.Location = new Point(14, 431);
             guna2HtmlLabel7.Name = "guna2HtmlLabel7";
-            guna2HtmlLabel7.Size = new Size(66, 22);
+            guna2HtmlLabel7.Size = new Size(67, 22);
             guna2HtmlLabel7.TabIndex = 17;
             guna2HtmlLabel7.Text = "Đáp án D";
             // 
             // guna2HtmlLabel8
             // 
             guna2HtmlLabel8.BackColor = Color.Transparent;
-            guna2HtmlLabel8.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel8.Location = new Point(37, 496);
+            guna2HtmlLabel8.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2HtmlLabel8.Location = new Point(14, 372);
             guna2HtmlLabel8.Name = "guna2HtmlLabel8";
-            guna2HtmlLabel8.Size = new Size(64, 22);
+            guna2HtmlLabel8.Size = new Size(65, 22);
             guna2HtmlLabel8.TabIndex = 18;
             guna2HtmlLabel8.Text = "Đáp án C";
             // 
@@ -505,10 +520,10 @@
             tbx_DapAnB.Font = new Font("Segoe UI", 9F);
             tbx_DapAnB.ForeColor = Color.FromArgb(45, 55, 72);
             tbx_DapAnB.HoverState.BorderColor = Color.FromArgb(150, 175, 230);
-            tbx_DapAnB.Location = new Point(117, 429);
+            tbx_DapAnB.Location = new Point(90, 306);
             tbx_DapAnB.Multiline = true;
             tbx_DapAnB.Name = "tbx_DapAnB";
-            tbx_DapAnB.PlaceholderText = "";
+            tbx_DapAnB.PlaceholderText = "Đáp án B của câu hỏi";
             tbx_DapAnB.SelectedText = "";
             tbx_DapAnB.ShadowDecoration.CustomizableEdges = customizableEdges20;
             tbx_DapAnB.Size = new Size(369, 36);
@@ -527,9 +542,9 @@
             tbx_DapAnC.Font = new Font("Segoe UI", 9F);
             tbx_DapAnC.ForeColor = Color.FromArgb(45, 55, 72);
             tbx_DapAnC.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            tbx_DapAnC.Location = new Point(117, 487);
+            tbx_DapAnC.Location = new Point(88, 362);
             tbx_DapAnC.Name = "tbx_DapAnC";
-            tbx_DapAnC.PlaceholderText = "";
+            tbx_DapAnC.PlaceholderText = "Đáp án C của câu hỏi";
             tbx_DapAnC.SelectedText = "";
             tbx_DapAnC.ShadowDecoration.CustomizableEdges = customizableEdges22;
             tbx_DapAnC.Size = new Size(369, 36);
@@ -548,10 +563,10 @@
             tbx_DapAnD.Font = new Font("Segoe UI", 9F);
             tbx_DapAnD.ForeColor = Color.FromArgb(45, 55, 72);
             tbx_DapAnD.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            tbx_DapAnD.Location = new Point(117, 555);
+            tbx_DapAnD.Location = new Point(88, 421);
             tbx_DapAnD.Multiline = true;
             tbx_DapAnD.Name = "tbx_DapAnD";
-            tbx_DapAnD.PlaceholderText = "";
+            tbx_DapAnD.PlaceholderText = "Đáp án D của câu hỏi";
             tbx_DapAnD.SelectedText = "";
             tbx_DapAnD.ShadowDecoration.CustomizableEdges = customizableEdges24;
             tbx_DapAnD.Size = new Size(369, 36);
@@ -591,7 +606,7 @@
             dgv_DanhSachCauHoi.ReadOnly = true;
             dgv_DanhSachCauHoi.RowHeadersVisible = false;
             dgv_DanhSachCauHoi.RowTemplate.Height = 60;
-            dgv_DanhSachCauHoi.Size = new Size(1018, 554);
+            dgv_DanhSachCauHoi.Size = new Size(1018, 547);
             dgv_DanhSachCauHoi.TabIndex = 23;
             dgv_DanhSachCauHoi.ThemeStyle.AlternatingRowsStyle.BackColor = Color.FromArgb(248, 250, 253);
             dgv_DanhSachCauHoi.ThemeStyle.GridColor = Color.FromArgb(235, 239, 245);
@@ -675,10 +690,10 @@
             // guna2HtmlLabel9
             // 
             guna2HtmlLabel9.BackColor = Color.Transparent;
-            guna2HtmlLabel9.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel9.Location = new Point(37, 621);
+            guna2HtmlLabel9.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2HtmlLabel9.Location = new Point(14, 490);
             guna2HtmlLabel9.Name = "guna2HtmlLabel9";
-            guna2HtmlLabel9.Size = new Size(76, 22);
+            guna2HtmlLabel9.Size = new Size(80, 22);
             guna2HtmlLabel9.TabIndex = 24;
             guna2HtmlLabel9.Text = "Tra câu hỏi";
             // 
@@ -695,13 +710,13 @@
             tbx_TraCauHoi.Font = new Font("Segoe UI", 9F);
             tbx_TraCauHoi.ForeColor = Color.FromArgb(45, 55, 72);
             tbx_TraCauHoi.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            tbx_TraCauHoi.Location = new Point(117, 612);
+            tbx_TraCauHoi.Location = new Point(100, 480);
             tbx_TraCauHoi.Multiline = true;
             tbx_TraCauHoi.Name = "tbx_TraCauHoi";
-            tbx_TraCauHoi.PlaceholderText = "";
+            tbx_TraCauHoi.PlaceholderText = "Tìm kiếm tất cả câu hỏi";
             tbx_TraCauHoi.SelectedText = "";
             tbx_TraCauHoi.ShadowDecoration.CustomizableEdges = customizableEdges26;
-            tbx_TraCauHoi.Size = new Size(367, 36);
+            tbx_TraCauHoi.Size = new Size(357, 36);
             tbx_TraCauHoi.TabIndex = 25;
             // 
             // btn_Them
@@ -717,7 +732,7 @@
             btn_Them.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_Them.ForeColor = Color.White;
             btn_Them.HoverState.FillColor = Color.FromArgb(40, 87, 197);
-            btn_Them.Location = new Point(528, 673);
+            btn_Them.Location = new Point(528, 663);
             btn_Them.Name = "btn_Them";
             btn_Them.ShadowDecoration.CustomizableEdges = customizableEdges28;
             btn_Them.Size = new Size(137, 36);
@@ -738,7 +753,7 @@
             guna2Button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2Button2.ForeColor = Color.White;
             guna2Button2.HoverState.FillColor = Color.FromArgb(189, 48, 48);
-            guna2Button2.Location = new Point(759, 673);
+            guna2Button2.Location = new Point(761, 663);
             guna2Button2.Name = "guna2Button2";
             guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges30;
             guna2Button2.Size = new Size(133, 36);
@@ -759,7 +774,7 @@
             guna2Button3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2Button3.ForeColor = Color.White;
             guna2Button3.HoverState.FillColor = Color.FromArgb(18, 131, 97);
-            guna2Button3.Location = new Point(989, 673);
+            guna2Button3.Location = new Point(989, 663);
             guna2Button3.Name = "guna2Button3";
             guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges32;
             guna2Button3.Size = new Size(116, 36);
@@ -770,10 +785,10 @@
             // guna2HtmlLabel10
             // 
             guna2HtmlLabel10.BackColor = Color.Transparent;
-            guna2HtmlLabel10.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel10.Location = new Point(289, 178);
+            guna2HtmlLabel10.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2HtmlLabel10.Location = new Point(260, 79);
             guna2HtmlLabel10.Name = "guna2HtmlLabel10";
-            guna2HtmlLabel10.Size = new Size(89, 22);
+            guna2HtmlLabel10.Size = new Size(92, 22);
             guna2HtmlLabel10.TabIndex = 29;
             guna2HtmlLabel10.Text = "Đáp án đúng";
             // 
@@ -790,7 +805,7 @@
             cbo_DapAnDung.Font = new Font("Segoe UI", 10F);
             cbo_DapAnDung.ForeColor = Color.FromArgb(45, 55, 72);
             cbo_DapAnDung.ItemHeight = 30;
-            cbo_DapAnDung.Location = new Point(393, 171);
+            cbo_DapAnDung.Location = new Point(366, 70);
             cbo_DapAnDung.Name = "cbo_DapAnDung";
             cbo_DapAnDung.ShadowDecoration.CustomizableEdges = customizableEdges34;
             cbo_DapAnDung.Size = new Size(93, 36);
@@ -799,10 +814,10 @@
             // guna2HtmlLabel11
             // 
             guna2HtmlLabel11.BackColor = Color.Transparent;
-            guna2HtmlLabel11.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel11.Location = new Point(37, 682);
+            guna2HtmlLabel11.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2HtmlLabel11.Location = new Point(14, 554);
             guna2HtmlLabel11.Name = "guna2HtmlLabel11";
-            guna2HtmlLabel11.Size = new Size(58, 22);
+            guna2HtmlLabel11.Size = new Size(62, 22);
             guna2HtmlLabel11.TabIndex = 31;
             guna2HtmlLabel11.Text = "Tra môn";
             // 
@@ -819,7 +834,7 @@
             btn_TimKiemCauHoi.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_TimKiemCauHoi.ForeColor = Color.White;
             btn_TimKiemCauHoi.HoverState.FillColor = Color.FromArgb(71, 85, 105);
-            btn_TimKiemCauHoi.Location = new Point(1411, 673);
+            btn_TimKiemCauHoi.Location = new Point(1411, 663);
             btn_TimKiemCauHoi.Name = "btn_TimKiemCauHoi";
             btn_TimKiemCauHoi.ShadowDecoration.CustomizableEdges = customizableEdges36;
             btn_TimKiemCauHoi.Size = new Size(116, 36);
@@ -840,7 +855,7 @@
             cbo_LocMon.Font = new Font("Segoe UI", 10F);
             cbo_LocMon.ForeColor = Color.FromArgb(45, 55, 72);
             cbo_LocMon.ItemHeight = 30;
-            cbo_LocMon.Location = new Point(119, 673);
+            cbo_LocMon.Location = new Point(90, 544);
             cbo_LocMon.Name = "cbo_LocMon";
             cbo_LocMon.ShadowDecoration.CustomizableEdges = customizableEdges38;
             cbo_LocMon.Size = new Size(367, 36);
@@ -859,7 +874,7 @@
             btn_LamMoiBang.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_LamMoiBang.ForeColor = Color.Black;
             btn_LamMoiBang.HoverState.FillColor = Color.FromArgb(18, 131, 97);
-            btn_LamMoiBang.Location = new Point(1208, 673);
+            btn_LamMoiBang.Location = new Point(1208, 663);
             btn_LamMoiBang.Name = "btn_LamMoiBang";
             btn_LamMoiBang.ShadowDecoration.CustomizableEdges = customizableEdges40;
             btn_LamMoiBang.Size = new Size(116, 36);
@@ -867,50 +882,55 @@
             btn_LamMoiBang.Text = "Làm mới bảng";
             btn_LamMoiBang.Click += btn_LamMoiBang_Click;
             // 
-            // lbl_TatCaMon
+            // guna2Panel5
             // 
-            lbl_TatCaMon.AutoSize = true;
-            lbl_TatCaMon.BackColor = Color.Transparent;
-            lbl_TatCaMon.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_TatCaMon.Location = new Point(491, 19);
-            lbl_TatCaMon.Name = "lbl_TatCaMon";
-            lbl_TatCaMon.Size = new Size(110, 25);
-            lbl_TatCaMon.TabIndex = 40;
-            lbl_TatCaMon.Text = "Tất cả môn";
+            guna2Panel5.BackColor = Color.Transparent;
+            guna2Panel5.BorderColor = Color.FromArgb(224, 224, 224);
+            guna2Panel5.BorderRadius = 10;
+            guna2Panel5.BorderThickness = 1;
+            guna2Panel5.Controls.Add(guna2HtmlLabel3);
+            guna2Panel5.Controls.Add(tbx_NoiDung);
+            guna2Panel5.Controls.Add(cbo_LocMon);
+            guna2Panel5.Controls.Add(tbx_DapAnA);
+            guna2Panel5.Controls.Add(guna2HtmlLabel2);
+            guna2Panel5.Controls.Add(guna2HtmlLabel11);
+            guna2Panel5.Controls.Add(guna2HtmlLabel4);
+            guna2Panel5.Controls.Add(cbo_DapAnDung);
+            guna2Panel5.Controls.Add(cbo_MonHoc);
+            guna2Panel5.Controls.Add(guna2HtmlLabel10);
+            guna2Panel5.Controls.Add(cbo_DoKho);
+            guna2Panel5.Controls.Add(guna2HtmlLabel5);
+            guna2Panel5.Controls.Add(guna2HtmlLabel6);
+            guna2Panel5.Controls.Add(guna2HtmlLabel7);
+            guna2Panel5.Controls.Add(tbx_TraCauHoi);
+            guna2Panel5.Controls.Add(guna2HtmlLabel8);
+            guna2Panel5.Controls.Add(guna2HtmlLabel9);
+            guna2Panel5.Controls.Add(tbx_DapAnB);
+            guna2Panel5.Controls.Add(tbx_DapAnC);
+            guna2Panel5.Controls.Add(tbx_DapAnD);
+            guna2Panel5.CustomizableEdges = customizableEdges41;
+            guna2Panel5.FillColor = Color.White;
+            guna2Panel5.Location = new Point(37, 103);
+            guna2Panel5.Name = "guna2Panel5";
+            guna2Panel5.ShadowDecoration.CustomizableEdges = customizableEdges42;
+            guna2Panel5.ShadowDecoration.Shadow = new Padding(1);
+            guna2Panel5.Size = new Size(475, 596);
+            guna2Panel5.TabIndex = 38;
             // 
             // Form_NganHangCauHoi
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(245, 247, 251);
-            ClientSize = new Size(1577, 739);
+            ClientSize = new Size(1577, 730);
+            Controls.Add(guna2Panel5);
             Controls.Add(btn_LamMoiBang);
-            Controls.Add(cbo_LocMon);
             Controls.Add(btn_TimKiemCauHoi);
-            Controls.Add(guna2HtmlLabel11);
-            Controls.Add(cbo_DapAnDung);
-            Controls.Add(guna2HtmlLabel10);
             Controls.Add(guna2Button3);
             Controls.Add(guna2Button2);
             Controls.Add(btn_Them);
-            Controls.Add(tbx_TraCauHoi);
-            Controls.Add(guna2HtmlLabel9);
             Controls.Add(dgv_DanhSachCauHoi);
-            Controls.Add(tbx_DapAnD);
-            Controls.Add(tbx_DapAnC);
-            Controls.Add(tbx_DapAnB);
-            Controls.Add(guna2HtmlLabel8);
-            Controls.Add(guna2HtmlLabel7);
-            Controls.Add(guna2HtmlLabel6);
-            Controls.Add(guna2HtmlLabel5);
-            Controls.Add(cbo_DoKho);
-            Controls.Add(cbo_MonHoc);
-            Controls.Add(guna2HtmlLabel4);
-            Controls.Add(guna2HtmlLabel2);
-            Controls.Add(tbx_DapAnA);
-            Controls.Add(tbx_NoiDung);
             Controls.Add(guna2Panel1);
-            Controls.Add(guna2HtmlLabel3);
             ForeColor = Color.FromArgb(45, 55, 72);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Form_NganHangCauHoi";
@@ -927,8 +947,9 @@
             guna2Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgv_DanhSachCauHoi).EndInit();
+            guna2Panel5.ResumeLayout(false);
+            guna2Panel5.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -983,5 +1004,6 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
         private Guna.UI2.WinForms.Guna2Button btn_LamMoiBang;
         private Label lbl_TatCaMon;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
     }
 }
