@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
-
 namespace HeThongThiTracNghiem
 {
     public partial class Form_NganHangCauHoi : Form
@@ -26,7 +25,6 @@ namespace HeThongThiTracNghiem
             LoadCauHoiThuCong();
             LoadThongKeThanhTieuDe();
         }
-
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             if (cbo_MonHoc.SelectedValue == null ||
@@ -323,7 +321,6 @@ namespace HeThongThiTracNghiem
                                 "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btn_TimKiemCauHoi_Click(object sender, EventArgs e)
         {
             string tuKhoa = tbx_TraCauHoi.Text.Trim();
@@ -345,17 +342,13 @@ namespace HeThongThiTracNghiem
                     tenMon = cbo_LocMon.Text;
                 }
             }
-
     
             LoadCauHoiThuCong(tuKhoa, maMon);
-
-      
             LoadThongKeThanhTieuDe(maMon, tenMon);
         }
 
         private void guna2Button3_Click(object sender, EventArgs e)
         {
-            // 1. Kiểm tra xem người dùng đã chọn dòng nào trên bảng chưa
             if (dgv_DanhSachCauHoi.SelectedRows.Count == 0 && dgv_DanhSachCauHoi.CurrentCell == null)
             {
                 MessageBox.Show("Vui lòng chọn câu hỏi cần cập nhật trên bảng!",
@@ -363,7 +356,6 @@ namespace HeThongThiTracNghiem
                 return;
             }
 
-            // 2. Kiểm tra dữ liệu đầu vào
             if (cbo_MonHoc.SelectedValue == null ||
                 string.IsNullOrWhiteSpace(tbx_DapAnA.Text) ||
                 string.IsNullOrWhiteSpace(tbx_DapAnB.Text) ||
@@ -375,14 +367,11 @@ namespace HeThongThiTracNghiem
                                 "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             try
             {
-                // 3. Lấy maCauHoi từ dòng đang chọn
                 int rowIndex = dgv_DanhSachCauHoi.CurrentCell.RowIndex;
                 int maCauHoi = Convert.ToInt32(dgv_DanhSachCauHoi.Rows[rowIndex].Cells["maCauHoi"].Value);
 
-                // 4. Lấy dữ liệu từ các ô nhập liệu
                 string maMon = cbo_MonHoc.SelectedValue.ToString();
                 string noiDung = tbx_NoiDung.Text.Trim();
                 string dapAnA = tbx_DapAnA.Text.Trim();
@@ -392,7 +381,6 @@ namespace HeThongThiTracNghiem
                 string doKho = cbo_DoKho.SelectedItem != null ? cbo_DoKho.SelectedItem.ToString() : cbo_DoKho.Text;
                 string dapAnDung = cbo_DapAnDung.SelectedItem != null ? cbo_DapAnDung.SelectedItem.ToString() : cbo_DapAnDung.Text;
 
-                // 5. Câu lệnh UPDATE trong SQL
                 string cauTruyVan = @"UPDATE CauHoi 
                              SET maMon = @maMon, 
                                  doKho = @doKho, 
@@ -506,7 +494,6 @@ namespace HeThongThiTracNghiem
 
         private void btn_LamMoiBang_Click(object sender, EventArgs e)
         {
-
             tbx_NoiDung.Clear();
             tbx_DapAnA.Clear();
             tbx_DapAnB.Clear();
