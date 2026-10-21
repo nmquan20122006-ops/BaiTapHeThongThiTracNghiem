@@ -10,7 +10,7 @@ namespace HeThongThiTracNghiem
 {
     public partial class Form_NganHangCauHoi : Form
     {
-        string connString = "Server=100.78.158.91,1433;Database=HETHONGTHITRACNGHIEM;User Id=NhomHeThongThiTracNghiem;Password=123456;TrustServerCertificate=True;";
+        public string connString = "Server=100.78.158.91,1433;Database=HETHONGTHITRACNGHIEM;User Id=NhomHeThongThiTracNghiem;Password=123456;TrustServerCertificate=True;";
         public Form_NganHangCauHoi()
         {
             InitializeComponent();
