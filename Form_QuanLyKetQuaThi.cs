@@ -24,6 +24,8 @@ namespace HeThongThiTracNghiem
         {
             LoadSoLieuThongKe();
             LoadDataGridView();
+            LoadComboBoxMonThi();
+            LoadComboBoxMucDiem();
             KiemTraKetNoi();
         }
         private void KiemTraKetNoi()
@@ -104,7 +106,9 @@ namespace HeThongThiTracNghiem
                             string thoiGianLam = doc["thoiGianPhut"].ToString() + " Phút";
                             string maBaiThi = doc["maBaiThi"].ToString();
 
-                            dgv_DanhSachKetQuaTheoThiSinh.Rows.Add(stt, maBaiThi ,hoTen, taiKhoan, monThi, diem, thoiGianLam);
+                            dgv_DanhSachKetQuaTheoThiSinh.Rows.Add(stt, maBaiThi, hoTen, taiKhoan, monThi, diem, thoiGianLam);
+                            dgv_1.Rows.Add(stt, maBaiThi, hoTen, taiKhoan, monThi, diem, thoiGianLam);
+                            dgv_2.Rows.Add(stt, maBaiThi, hoTen, taiKhoan, monThi, diem, thoiGianLam);
                             stt++;
                         }
                     }
@@ -131,7 +135,7 @@ namespace HeThongThiTracNghiem
         }
         private void HienThiChiTietBaiThi(int maBaiThi)
         {
-            using(SqlConnection ketNoi = new SqlConnection(connString))
+            using (SqlConnection ketNoi = new SqlConnection(connString))
             {
                 try
                 {
@@ -145,7 +149,7 @@ namespace HeThongThiTracNghiem
                     SqlCommand cauLenh = new SqlCommand(truyVan, ketNoi);
                     cauLenh.Parameters.AddWithValue("@maBaiThi", maBaiThi);
 
-                    using(SqlDataReader doc = cauLenh.ExecuteReader())
+                    using (SqlDataReader doc = cauLenh.ExecuteReader())
                     {
                         if (doc.Read())
                         {
@@ -179,7 +183,7 @@ namespace HeThongThiTracNghiem
         private void LoadTongQuanCauTraLoi(int maBaiThi)
         {
             dgv_TongQuanCauTraLoi.Rows.Clear();
-            using(SqlConnection ketNoi = new SqlConnection(connString))
+            using (SqlConnection ketNoi = new SqlConnection(connString))
             {
                 try
                 {
@@ -204,11 +208,123 @@ namespace HeThongThiTracNghiem
                         }
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Lỗi tải tổng quan câu trả lời: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+        private void TimKiemTheoTenVaMucDiem(string tenThiSinh, decimal mucDiem)
+        {
+            dgv_DanhSachKetQuaTheoThiSinh.Rows.Clear();
+
+            using (SqlConnection ketNoi = new SqlConnection(connString))
+            {
+                try
+                {
+                    ketNoi.Open();
+                    string truyVan = @"SELECT 
+                                bt.maBaiThi,
+                                tk.hoTen,
+                                tk.tenDangNhap,
+                                mh.tenMon,
+                                bt.diem,
+                                dt.thoiGianPhut
+                            FROM BaiThi bt
+                            JOIN TaiKhoan tk ON bt.maTaiKhoan = tk.maTaiKhoan
+                            JOIN DeThi dt ON bt.maDeThi = dt.maDeThi
+                            JOIN MonHoc mh ON dt.maMon = mh.maMon
+                            WHERE 
+                                tk.hoTen LIKE '%' + @tenThiSinh + '%'
+                                AND (@mucDiem = -1 OR bt.diem >= @mucDiem)";
+
+                    SqlCommand cauLenh = new SqlCommand(truyVan, ketNoi);
+
+                    cauLenh.Parameters.AddWithValue("@tenThiSinh", tenThiSinh.Trim());
+
+                    cauLenh.Parameters.AddWithValue("@mucDiem", mucDiem);
+
+                    using (SqlDataReader doc = cauLenh.ExecuteReader())
+                    {
+                        int stt = 1;
+                        while (doc.Read())
+                        {
+                            string hoTen = doc["hoTen"].ToString();
+                            string taiKhoan = doc["tenDangNhap"].ToString();
+                            string monThi = doc["tenMon"].ToString();
+                            string diem = doc["diem"] != DBNull.Value ? doc["diem"].ToString() : "0";
+                            string thoiGianLam = doc["thoiGianPhut"].ToString() + " Phút";
+                            int maBaiThi = Convert.ToInt32(doc["maBaiThi"]);
+
+                            int rowIndex = dgv_DanhSachKetQuaTheoThiSinh.Rows.Add(stt, maBaiThi, hoTen, taiKhoan, monThi, diem, thoiGianLam);
+                            dgv_DanhSachKetQuaTheoThiSinh.Rows[rowIndex].Tag = maBaiThi;
+                            stt++;
+                        }
+                    }
+                }
+                catch (Exception loi)
+                {
+                    MessageBox.Show("Lỗi tìm kiếm: " + loi.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void btn_TimKiemCauHoi_Click(object sender, EventArgs e)
+        {
+            string tenThiSinh = tbx_TenThiSinh.Text.Trim();
+
+          
+            decimal mucDiem = -1;
+            if (!string.IsNullOrEmpty(cbo_MucDiem.Text))
+            {
+                decimal.TryParse(cbo_MucDiem.Text, out mucDiem);
+            }
+
+          
+            TimKiemTheoTenVaMucDiem(tenThiSinh, mucDiem);
+        }
+        private void LoadComboBoxMonThi()
+        {
+            using (SqlConnection ketNoi = new SqlConnection(connString))
+            {
+                try
+                {
+                    ketNoi.Open();
+                    string truyVan = "SELECT maMon, tenMon FROM MonHoc";
+
+                    SqlCommand cauLenh = new SqlCommand(truyVan, ketNoi);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cauLenh);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                   
+                    DataRow row = dt.NewRow();
+                    row["maMon"] = "";
+                    row["tenMon"] = "-- Tất cả môn học --";
+                    dt.Rows.InsertAt(row, 0);
+
+                    cbo_MonThi.DataSource = dt;
+                    cbo_MonThi.DisplayMember = "tenMon"; 
+                    cbo_MonThi.ValueMember = "maMon";    
+                    cbo_MonThi.SelectedIndex = 0;     
+                }
+                catch (Exception loi)
+                {
+                    MessageBox.Show("Lỗi tải danh sách môn học vào ComboBox: " + loi.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void LoadComboBoxMucDiem()
+        {
+            cbo_MucDiem.Items.Clear();
+
+            
+            cbo_MucDiem.Items.Add("Tất cả mức điểm"); 
+            cbo_MucDiem.Items.Add("5");              
+            cbo_MucDiem.Items.Add("7");             
+            cbo_MucDiem.Items.Add("8");           
+            cbo_MucDiem.Items.Add("9");           
+
+            cbo_MucDiem.SelectedIndex = 0;
         }
     }
 }
