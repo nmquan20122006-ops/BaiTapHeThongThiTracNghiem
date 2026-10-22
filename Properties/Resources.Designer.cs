@@ -63,6 +63,46 @@ namespace HeThongThiTracNghiem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _127804e58392d1386028d9f7795d7fff {
+            get {
+                object obj = ResourceManager.GetObject("127804e58392d1386028d9f7795d7fff", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _147ff8454fdbeadaa1d8eb955c1eb2b5 {
+            get {
+                object obj = ResourceManager.GetObject("147ff8454fdbeadaa1d8eb955c1eb2b5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _93171cb5f385636a4582c08e858915eb {
+            get {
+                object obj = ResourceManager.GetObject("93171cb5f385636a4582c08e858915eb", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cfef1fa7a267426c02df9b0fb07297b4 {
+            get {
+                object obj = ResourceManager.GetObject("cfef1fa7a267426c02df9b0fb07297b4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap question_mark {
             get {
                 object obj = ResourceManager.GetObject("question-mark", resourceCulture);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.Logging;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -23,6 +24,7 @@ namespace HeThongThiTracNghiem
         {
             LoadSoLieuThongKe();
             LoadDataGridView();
+            KiemTraKetNoi();
         }
         private void KiemTraKetNoi()
         {
@@ -31,7 +33,7 @@ namespace HeThongThiTracNghiem
                 using (SqlConnection ketNoi = new SqlConnection(connString))
                 {
                     ketNoi.Open();
-                    lbl_KiemTraKetNoi.Text = "Ok";
+                    lbl_KiemTraKetNoi.Text = "Trạng thái kết nối cơ sở dữ liệu: Đã kết nối";
                 }
             }
             catch (Exception loi)
@@ -171,6 +173,41 @@ namespace HeThongThiTracNghiem
             {
                 int maBaiThi = Convert.ToInt32(hang.Cells["maBaiThi"].Value);
                 HienThiChiTietBaiThi(maBaiThi);
+                LoadTongQuanCauTraLoi(maBaiThi);
+            }
+        }
+        private void LoadTongQuanCauTraLoi(int maBaiThi)
+        {
+            dgv_TongQuanCauTraLoi.Rows.Clear();
+            using(SqlConnection ketNoi = new SqlConnection(connString))
+            {
+                try
+                {
+                    ketNoi.Open();
+                    string truyVan = @"select c.noiDung, ctbt.dapAnChon,c.dapAnDung,ctbt.laDung from ChiTietBaiThi ctbt join CauHoi c on ctbt.maCauHoi = c.maCauHoi where ctbt.maBaiThi = @maBaiThi";
+
+                    SqlCommand cauLenh = new SqlCommand(truyVan, ketNoi);
+                    cauLenh.Parameters.AddWithValue("@maBaiThi", maBaiThi);
+                    using (SqlDataReader doc = cauLenh.ExecuteReader())
+                    {
+                        int stt = 1;
+                        while (doc.Read())
+                        {
+                            string noiDung = doc["noiDung"].ToString();
+                            string dapAnChon = doc["dapAnChon"].ToString();
+                            string dapAnDung = doc["dapAnDung"].ToString();
+
+                            bool laDung = doc["laDung"] != DBNull.Value && Convert.ToBoolean(doc["laDung"]);
+                            string ketQua = laDung ? "Đúng" : "Sai";
+
+                            dgv_TongQuanCauTraLoi.Rows.Add(stt, noiDung, dapAnChon, dapAnDung, ketQua);
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Lỗi tải tổng quan câu trả lời: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

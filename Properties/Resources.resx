@@ -118,7 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="93171cb5f385636a4582c08e858915eb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\93171cb5f385636a4582c08e858915eb.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cfef1fa7a267426c02df9b0fb07297b4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cfef1fa7a267426c02df9b0fb07297b4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="question-mark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\question-mark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="127804e58392d1386028d9f7795d7fff" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\127804e58392d1386028d9f7795d7fff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="147ff8454fdbeadaa1d8eb955c1eb2b5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\147ff8454fdbeadaa1d8eb955c1eb2b5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
