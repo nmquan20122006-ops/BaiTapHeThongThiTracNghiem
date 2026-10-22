@@ -47,7 +47,7 @@ namespace HeThongThiTracNghiem
     public static class chamthi
     {
         private const string connectionString =
-            @"Data Source=localhost;Initial Catalog=Hethongthitracnghiem;Integrated Security=True;TrustServerCertificate=True";
+            @"Server=100.78.158.91,1433;Database=HETHONGTHITRACNGHIEM;User Id=NhomHeThongThiTracNghiem;Password=123456;TrustServerCertificate=True;";
 
         public static dethi DeThiHienTai { get; private set; }
         public static List<cauhoi> Danhsach { get; } = new List<cauhoi>();

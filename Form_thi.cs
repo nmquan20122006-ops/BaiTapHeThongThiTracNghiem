@@ -8,7 +8,7 @@ namespace HeThongThiTracNghiem
 {
     public partial class Form_thi : Form
     {
-        private const string connectionString = "Data Source=localhost;Initial Catalog=Hethongthitracnghiem;Integrated Security=True;TrustServerCertificate=True";
+        public string connString = "Server=100.78.158.91,1433;Database=HETHONGTHITRACNGHIEM;User Id=NhomHeThongThiTracNghiem;Password=123456;TrustServerCertificate=True;";
 
         private int chiSo = 0;
         private System.Windows.Forms.Timer dongHo = null;
@@ -63,7 +63,6 @@ namespace HeThongThiTracNghiem
             }
         }
 
-
         private void Form_thi_Load(object sender, EventArgs e)
         {
             BogocPanel(panel1, 15);
@@ -93,10 +92,10 @@ namespace HeThongThiTracNghiem
                 r.Height = 34;
             }
 
+            // Khởi tạo danh sách 36 nút câu hỏi hiển thị bên phải bảng
             nutCauHoi = new Guna2Button[36]
             {
                 guna2Button1, guna2Button2, guna2Button3, guna2Button4, guna2Button5, guna2Button11, guna2Button6, guna2Button7, guna2Button8, guna2Button9,
-
                 guna2Button10, guna2Button15, guna2Button27, guna2Button26, guna2Button25, guna2Button24, guna2Button23, guna2Button17, guna2Button22, guna2Button21,
                 guna2Button20, guna2Button19, guna2Button18, guna2Button16, guna2Button39, guna2Button38, guna2Button37, guna2Button36, guna2Button35, guna2Button29,
                 guna2Button34, guna2Button33, guna2Button32, guna2Button31, guna2Button30, guna2Button28
@@ -116,6 +115,7 @@ namespace HeThongThiTracNghiem
                 nutCauHoi[j].Cursor = Cursors.Hand;
             }
 
+            // Ẩn các nút câu hỏi thừa nếu số lượng câu hỏi thực tế trong đề ít hơn 36 câu
             for (int i2 = chamthi.Danhsach.Count; i2 < nutCauHoi.Length; i2++)
             {
                 nutCauHoi[i2].Visible = false;
@@ -126,19 +126,23 @@ namespace HeThongThiTracNghiem
             guna2RadioButton3.CheckedChanged += Radio_CheckedChanged;
             guna2RadioButton4.CheckedChanged += Radio_CheckedChanged;
 
+            // Gắn sự kiện nút "Câu trước" (guna2Button12) và "Câu sau" (guna2Button13)
             guna2Button12.Click += (s, ev) =>
             {
                 ChuyenCau(chiSo - 1);
-
             };
             guna2Button13.Click += (s, ev) =>
             {
                 ChuyenCau(chiSo + 1);
             };
+
+            // Gắn sự kiện nút "Nộp bài thi" (guna2Button14)
             guna2Button14.Click += Guna2Button14_Click;
 
+            // Hiển thị câu hỏi đầu tiên
             HienThiCau(0);
 
+            // Khởi chạy đồng hồ đếm ngược thời gian thi
             dongHo = new System.Windows.Forms.Timer();
             dongHo.Interval = 1000;
             dongHo.Tick += DongHo_Tick;
@@ -156,12 +160,11 @@ namespace HeThongThiTracNghiem
             chiSo = index;
             cauhoi ch = chamthi.Danhsach[index];
 
-            label4.Text = string.Format("Câu {0}: {2}", index + 1, chamthi.Danhsach.Count, ch.NoiDung);
+            label4.Text = string.Format("Câu {0}: {1}", index + 1, ch.NoiDung);
             guna2RadioButton1.Text = "A. " + ch.DapAnA;
             guna2RadioButton2.Text = "B. " + ch.DapAnB;
             guna2RadioButton3.Text = "C. " + ch.DapAnC;
             guna2RadioButton4.Text = "D. " + ch.DapAnD;
-
 
             dangCapNhat = true;
             guna2RadioButton1.Checked = false;
@@ -195,7 +198,6 @@ namespace HeThongThiTracNghiem
         private void Radio_CheckedChanged(object sender, EventArgs e)
         {
             if (!dangCapNhat)
-
             {
                 LuuDapAn();
                 CapNhatNutCauHoi();
@@ -228,7 +230,6 @@ namespace HeThongThiTracNghiem
         {
             if (index >= 0 && index < chamthi.Danhsach.Count)
             {
-
                 LuuDapAn();
                 HienThiCau(index);
             }
@@ -261,7 +262,6 @@ namespace HeThongThiTracNghiem
             int chuaLam = chamthi.Danhsach.Count - chamthi.DapAn.Count;
             string msg = "Bạn có chắc muốn nộp bài?";
             if (chuaLam > 0)
-
             {
                 msg += $"\n\nCòn {chuaLam} câu chưa làm.";
             }
@@ -294,7 +294,6 @@ namespace HeThongThiTracNghiem
             {
                 dongHo.Stop();
                 dongHo.Dispose();
-
                 dongHo = null;
             }
             base.OnFormClosing(e);
@@ -314,7 +313,6 @@ namespace HeThongThiTracNghiem
 
         private void Form_thi_Load_1(object sender, EventArgs e)
         {
-
         }
     }
 }

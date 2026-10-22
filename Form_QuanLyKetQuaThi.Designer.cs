@@ -431,7 +431,6 @@
             // 
             guna2PictureBox4.BackColor = Color.Transparent;
             guna2PictureBox4.CustomizableEdges = customizableEdges5;
-            //guna2PictureBox4.Image = Properties.Resources.cfef1fa7a267426c02df9b0fb07297b4;
             guna2PictureBox4.ImageRotate = 0F;
             guna2PictureBox4.Location = new Point(19, 56);
             guna2PictureBox4.Name = "guna2PictureBox4";
@@ -493,9 +492,7 @@
             // 
             guna2PictureBox3.BackColor = Color.Transparent;
             guna2PictureBox3.CustomizableEdges = customizableEdges9;
-            //guna2PictureBox3.Image = Properties.Resources._127804e58392d1386028d9f7795d7fff;
             guna2PictureBox3.ImageRotate = 0F;
-            //guna2PictureBox3.InitialImage = Properties.Resources._127804e58392d1386028d9f7795d7fff;
             guna2PictureBox3.Location = new Point(27, 56);
             guna2PictureBox3.Name = "guna2PictureBox3";
             guna2PictureBox3.ShadowDecoration.CustomizableEdges = customizableEdges10;
@@ -2079,7 +2076,6 @@
             // 
             guna2PictureBox5.BackColor = Color.Transparent;
             guna2PictureBox5.CustomizableEdges = customizableEdges73;
-            //guna2PictureBox5.Image = Properties.Resources._147ff8454fdbeadaa1d8eb955c1eb2b5;
             guna2PictureBox5.ImageRotate = 0F;
             guna2PictureBox5.Location = new Point(15, 9);
             guna2PictureBox5.Name = "guna2PictureBox5";
