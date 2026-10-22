@@ -28,13 +28,13 @@ namespace HeThongThiTracNghiem
         {
             try
             {
-                using(SqlConnection ketNoi = new SqlConnection(connString))
+                using (SqlConnection ketNoi = new SqlConnection(connString))
                 {
                     ketNoi.Open();
                     lbl_KiemTraKetNoi.Text = "Ok";
                 }
             }
-            catch(Exception loi)
+            catch (Exception loi)
             {
                 MessageBox.Show("Lỗi kết nối database: " + loi.Message);
             }
@@ -58,13 +58,13 @@ namespace HeThongThiTracNghiem
                         if (doc.Read())
                         {
                             lbl_TongSoThiSinh.Text = doc["TongSoThiSinh"].ToString();
-                            lbl_TongSoBaiThi.Text = doc["TongBaiThi"].ToString(); 
+                            lbl_TongSoBaiThi.Text = doc["TongBaiThi"].ToString();
                             lbl_DiemTrungBinh.Text = doc["DiemTrungBinh"].ToString();
                             lbl_DiemCaoNhat.Text = doc["DiemCaoNhat"].ToString();
                         }
                     }
-                }   
-                catch(Exception loi)
+                }
+                catch (Exception loi)
                 {
                     MessageBox.Show("Lỗi tải số liệu thống kê: " + loi.Message);
                 }
@@ -82,7 +82,8 @@ namespace HeThongThiTracNghiem
                                         tk.tenDangNhap,
                                         mh.tenMon,
                                         bt.diem,
-                                        dt.thoiGianPhut
+                                        dt.thoiGianPhut,
+                                        bt.maBaiThi
                                     FROM BaiThi bt
                                     JOIN TaiKhoan tk ON bt.maTaiKhoan = tk.maTaiKhoan
                                     JOIN DeThi dt ON bt.maDeThi = dt.maDeThi
@@ -99,30 +100,19 @@ namespace HeThongThiTracNghiem
                             string monThi = doc["tenMon"].ToString();
                             string diem = doc["diem"] != DBNull.Value ? doc["diem"].ToString() : "0";
                             string thoiGianLam = doc["thoiGianPhut"].ToString() + " Phút";
+                            string maBaiThi = doc["maBaiThi"].ToString();
 
-                            dgv_DanhSachKetQuaTheoThiSinh.Rows.Add(stt, hoTen, taiKhoan, monThi, diem, thoiGianLam);
+                            dgv_DanhSachKetQuaTheoThiSinh.Rows.Add(stt, maBaiThi ,hoTen, taiKhoan, monThi, diem, thoiGianLam);
                             stt++;
                         }
                     }
                 }
-                catch(Exception loi)
+                catch (Exception loi)
                 {
                     MessageBox.Show("Lỗi khi tải dữ liệu vào bảng: " + loi.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
         private void tpl_ThongKeChiTiet_Paint(object sender, PaintEventArgs e)
         {
 
@@ -133,5 +123,55 @@ namespace HeThongThiTracNghiem
 
         }
 
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void HienThiChiTietBaiThi(int maBaiThi)
+        {
+            using(SqlConnection ketNoi = new SqlConnection(connString))
+            {
+                try
+                {
+                    ketNoi.Open();
+                    string truyVan = @"SELECT tk.hoTen, tk.tenDangNhap, mh.tenMon, dt.tenDe, dt.thoiGianPhut, bt.diem
+                                        FROM BaiThi bt
+                                        JOIN TaiKhoan tk ON bt.maTaiKhoan = tk.maTaiKhoan
+                                        JOIN DeThi dt ON bt.maDeThi = dt.maDeThi
+                                        JOIN MonHoc mh ON dt.maMon = mh.maMon
+                                        WHERE bt.maBaiThi = @maBaiThi";
+                    SqlCommand cauLenh = new SqlCommand(truyVan, ketNoi);
+                    cauLenh.Parameters.AddWithValue("@maBaiThi", maBaiThi);
+
+                    using(SqlDataReader doc = cauLenh.ExecuteReader())
+                    {
+                        if (doc.Read())
+                        {
+                            lbl_TenNguoiDung.Text = doc["hoTen"].ToString();
+                            lbl_MonThi.Text = doc["tenMon"].ToString();
+                            lbl_TaiKhoanNguoiDung.Text = doc["tenDangNhap"].ToString();
+                            lbl_ThoiGianLamBai.Text = doc["thoiGianPhut"].ToString() + " phút";
+                            lbl_DeThi.Text = doc["tenDe"].ToString();
+                            lbl_DiemBaiThi.Text = doc["diem"].ToString();
+                        }
+                    }
+                }
+                catch (Exception loi)
+                {
+                    MessageBox.Show("Lỗi hiển thị chi tiết bài thi: " + loi.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void dgv_DanhSachKetQuaTheoThiSinh_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            DataGridViewRow hang = dgv_DanhSachKetQuaTheoThiSinh.Rows[e.RowIndex];
+            if (hang.Cells["maBaiThi"].Value != null)
+            {
+                int maBaiThi = Convert.ToInt32(hang.Cells["maBaiThi"].Value);
+                HienThiChiTietBaiThi(maBaiThi);
+            }
+        }
     }
 }
