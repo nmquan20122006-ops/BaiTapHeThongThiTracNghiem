@@ -58,7 +58,6 @@ namespace HeThongThiTracNghiem
                     }
                 }
 
-                // Đặt tiêu đề và độ rộng các cột
                 if (dgvDanhSach.Columns.Contains("maTaiKhoan"))
                 {
                     dgvDanhSach.Columns["maTaiKhoan"].HeaderText =
@@ -338,6 +337,11 @@ namespace HeThongThiTracNghiem
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
