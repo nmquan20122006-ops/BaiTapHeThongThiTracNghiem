@@ -12,7 +12,7 @@ namespace HeThongThiTracNghiem
 
         }
 
-        private void guna2Button1_Click(object sender, EventArgs e)
+        /*private void guna2Button1_Click(object sender, EventArgs e)
         {
             string tk = guna2TextBox1.Text.Trim();
             string mk = guna2TextBox2.Text.Trim(); 
@@ -79,7 +79,7 @@ namespace HeThongThiTracNghiem
                     }
                 }
             }
-        }
+        }*/
 
         private void Form_DangNhap_Load(object sender, EventArgs e)
         {
