@@ -11,7 +11,7 @@ namespace HeThongThiTracNghiem
 {
     public partial class Form_LichSuThi : Form
     {
-        string connectionstring = "Data Source=DESKTOP-3U6O521\\SQLEXPRESS;Initial Catalog=Hethongthitracnghiem;Integrated Security=True;TrustServerCertificate=True;";
+        string connectionstring = "Server=100.78.158.91,1433;Database=HETHONGTHITRACNGHIEM;User Id=NhomHeThongThiTracNghiem;Password=123456;TrustServerCertificate=True;";
         public Form_LichSuThi()
         {
             InitializeComponent();

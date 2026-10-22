@@ -39,7 +39,7 @@ namespace HeThongThiTracNghiem
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Form_MonThi form = new Form_ChonDeThi();
+            Form_monthi form = new Form_monthi();
             form.Show();
             this.Hide();
         }

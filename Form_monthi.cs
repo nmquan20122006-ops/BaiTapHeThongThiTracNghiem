@@ -1,121 +1,134 @@
 using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Globalization;
-using System.Text;
 using System.Windows.Forms;
 
 namespace HeThongThiTracNghiem
 {
     public partial class Form_monthi : Form
     {
+        // Chuỗi kết nối CSDL
+        public string connString = "Server=100.78.158.91,1433;Database=HETHONGTHITRACNGHIEM;User Id=NhomHeThongThiTracNghiem;Password=123456;TrustServerCertificate=True;";
+
+        // Khai báo biến lưu thông tin thí sinh
+        private string tenThiSinh = "";
+        private string maTaiKhoan = "";
+
+        // Hàm khởi tạo mặc định
         public Form_monthi()
         {
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        // Hàm khởi tạo nhận tên thí sinh từ Form Đăng Nhập truyền sang
+        public Form_monthi(string hoTen, string maTK)
         {
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-
-        private void BogocPanel(Panel pnl, int radius)
-        {
-            GraphicsPath path = new GraphicsPath();
-            int d = radius * 2;
-            Rectangle rect = new Rectangle(0, 0, pnl.Width - 1, pnl.Height - 1);
-            path.AddArc(rect.X, rect.Y, d, d, 180, 90);
-            path.AddArc(rect.Right - d, rect.Y, d, d, 270, 90);
-            path.AddArc(rect.Right - d, rect.Bottom - d, d, d, 0, 90);
-            path.AddArc(rect.X, rect.Bottom - d, d, d, 90, 90);
-            path.CloseFigure();
-            pnl.Region = new Region(path);
+            InitializeComponent();
+            this.tenThiSinh = hoTen;
+            this.maTaiKhoan = maTK;
         }
 
         private void Form_monthi_Load(object sender, EventArgs e)
         {
-            BogocPanel(panel3, 15);
-            BogocPanel(panel4, 15);
-            BogocPanel(panel5, 15);
-            BogocPanel(panel9, 15);
-            BogocPanel(panel10, 15);
-            BogocPanel(panel11, 15);
-            BogocPanel(panel12, 15);
-            BogocPanel(panel13, 15);
-            BogocPanel(panel14, 15);
-            BogocPanel(panel15, 15);
-            BogocPanel(panel16, 15);
-            BogocPanel(panel17, 15);
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-        }
-
-
-        static string BoDau(string s)
-        {
-            if (string.IsNullOrEmpty(s)) return "";
-            s = s.Replace('đ', 'd').Replace('Đ', 'D');
-            string norm = s.Normalize(NormalizationForm.FormD);
-            var sb = new StringBuilder();
-            foreach (char c in norm)
-                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
-                    sb.Append(c);
-            return sb.ToString().ToLower();
-        }
-
-        static bool KhopDauTu(string ten, string kw)
-        {
-            if (kw == "") return true;
-            string t = BoDau(ten);
-            // khớp nếu tên bắt đầu bằng kw, hoặc có từ nào bắt đầu bằng kw
-            return t.StartsWith(kw) || t.Contains(" " + kw);
-        }
-
-        private void guna2Button1_Click(object sender, EventArgs e)
-        {
-            guna2TextBox1.Clear();
-        }
-
-        private void guna2TextBox1_TextChanged_1(object sender, EventArgs e)
-        {
-            string kw = BoDau(guna2TextBox1.Text.Trim());
-
-            panel3.Visible = KhopDauTu(label3.Text, kw);
-            panel4.Visible = KhopDauTu(label4.Text, kw);
-
-            panel5.Visible = KhopDauTu(label5.Text, kw);
-        }
-
-        private void guna2CircleButton1_Click(object sender, EventArgs e)
-        {
-            int maDeThi = 3;
-            //int mataikhoan = chamthi.MaTaiKhoan;
-            int mataikhoan = 1;
-
-            if (chamthi.batdau(maDeThi, mataikhoan))
+            // 1. Cập nhật label xin chào khớp với tên thí sinh đăng nhập
+            if (!string.IsNullOrEmpty(tenThiSinh))
             {
-                Form_thi f = new Form_thi();
-                f.Show();
-                
+                // Giả sử tên label ở panel trên là lbl_XinChao hoặc guna2HtmlLabel1
+                lbl_Xinchao.Text = "Xin chào, " + tenThiSinh;
             }
             else
             {
-                MessageBox.Show(chamthi.LoiCuoi, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                lbl_Xinchao.Text = "Xin chào, Thí sinh";
             }
+
+            // 2. Load danh sách đề thi khi mở form
+            LoadDanhSachDeThi("");
+        }
+
+        // Hàm load danh sách đề thi lên DataGridView
+        private void LoadDanhSachDeThi(string tuKhoa)
+        {
+            using (SqlConnection ketNoi = new SqlConnection(connString))
+            {
+                try
+                {
+                    ketNoi.Open();
+                    string truyVan = @"SELECT 
+                                        dt.maDeThi AS [Mã đề],
+                                        dt.tenDe AS [Tên đề thi],
+                                        mh.tenMon AS [Môn học],
+                                        CAST(dt.thoiGianPhut AS VARCHAR) + ' phút' AS [Thời gian],
+                                        dt.soLuongCau AS [Số lượng câu]
+                                    FROM DeThi dt
+                                    JOIN MonHoc mh ON dt.maMon = mh.maMon
+                                    WHERE @tuKhoa = '' OR dt.tenDe LIKE '%' + @tuKhoa + '%' OR mh.tenMon LIKE '%' + @tuKhoa + '%'";
+
+                    SqlCommand cmd = new SqlCommand(truyVan, ketNoi);
+                    cmd.Parameters.AddWithValue("@tuKhoa", tuKhoa.Trim());
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    // Đổ dữ liệu lên DataGridView
+                    dgv_DanhSachDeThi.DataSource = dt;
+                }
+                catch (Exception loi)
+                {
+                    MessageBox.Show("Lỗi tải danh sách đề thi: " + loi.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        // Nút "Tìm kiếm đề thi"
+        private void btn_TimKiemDeThi_Click(object sender, EventArgs e)
+        {
+            string tuKhoa = btn_TimKiemDeThi.Text.Trim();
+            LoadDanhSachDeThi(tuKhoa);
+        }
+
+        // Nút "Bắt đầu thi" (Chọn đề từ DataGridView và chuyển sang Form_thi)
+        private void btn_BatDauThi_Click(object sender, EventArgs e)
+        {
+            if (dgv_DanhSachDeThi.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn một đề thi trong bảng để bắt đầu làm bài!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int maDeThi = Convert.ToInt32(dgv_DanhSachDeThi.SelectedRows[0].Cells["Mã đề"].Value);
+
+            // Mở form thi và truyền mã đề cùng thông tin thí sinh sang
+            //Form_thi formThi = new Form_thi(maDeThi, tenThiSinh);
+            //formThi.Show();
+            //this.Hide();
+        }
+
+        // Nút "Thoát"
+        private void btn_Thoat_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có chắc chắn muốn thoát khỏi giao diện chọn đề thi?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Form_GiaoDienHocSinh formDN = new Form_GiaoDienHocSinh();
+                formDN.Show();
+                this.Close();
+            }
+        }
+
+        private void dgv_DanhSachDeThi_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgv_DanhSachDeThi_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

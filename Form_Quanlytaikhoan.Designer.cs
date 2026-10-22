@@ -313,7 +313,7 @@
             btnLammoi.FillColor = Color.Blue;
             btnLammoi.Font = new Font("Segoe UI", 9F);
             btnLammoi.ForeColor = Color.White;
-            btnLammoi.Image = Properties.Resources._ref;
+            //btnLammoi.Image = Properties.Resources._ref;
             btnLammoi.ImageSize = new Size(30, 30);
             btnLammoi.Location = new Point(756, 162);
             btnLammoi.Name = "btnLammoi";
@@ -335,7 +335,7 @@
             btnTimkiem.FillColor = Color.Blue;
             btnTimkiem.Font = new Font("Segoe UI", 9F);
             btnTimkiem.ForeColor = Color.White;
-            btnTimkiem.Image = Properties.Resources.timk;
+            //btnTimkiem.Image = Properties.Resources.timk;
             btnTimkiem.ImageSize = new Size(30, 30);
             btnTimkiem.Location = new Point(756, 115);
             btnTimkiem.Name = "btnTimkiem";
@@ -390,7 +390,7 @@
             btnLock.FillColor = Color.Blue;
             btnLock.Font = new Font("Segoe UI", 9F);
             btnLock.ForeColor = Color.White;
-            btnLock.Image = Properties.Resources.lock1;
+            //btnLock.Image = Properties.Resources.lock1;
             btnLock.ImageSize = new Size(30, 30);
             btnLock.Location = new Point(238, 518);
             btnLock.Name = "btnLock";
@@ -412,7 +412,7 @@
             btnCapnhat.FillColor = Color.Blue;
             btnCapnhat.Font = new Font("Segoe UI", 9F);
             btnCapnhat.ForeColor = Color.White;
-            btnCapnhat.Image = Properties.Resources.edit;
+            //btnCapnhat.Image = Properties.Resources.edit;
             btnCapnhat.ImageSize = new Size(30, 30);
             btnCapnhat.Location = new Point(238, 471);
             btnCapnhat.Name = "btnCapnhat";
@@ -456,7 +456,7 @@
             btnXoa.FillColor = Color.Blue;
             btnXoa.Font = new Font("Segoe UI", 9F);
             btnXoa.ForeColor = Color.White;
-            btnXoa.Image = Properties.Resources.delete_28dp_F3F3F3;
+            //btnXoa.Image = Properties.Resources.delete_28dp_F3F3F3;
             btnXoa.ImageSize = new Size(30, 30);
             btnXoa.Location = new Point(12, 518);
             btnXoa.Name = "btnXoa";
@@ -478,7 +478,7 @@
             btnThem.FillColor = Color.Blue;
             btnThem.Font = new Font("Segoe UI", 9F);
             btnThem.ForeColor = Color.White;
-            btnThem.Image = Properties.Resources.add;
+            //btnThem.Image = Properties.Resources.add;
             btnThem.ImageSize = new Size(30, 30);
             btnThem.Location = new Point(12, 471);
             btnThem.Name = "btnThem";
@@ -708,7 +708,7 @@
             btnThoat.FillColor = Color.Transparent;
             btnThoat.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnThoat.ForeColor = Color.Black;
-            btnThoat.Image = Properties.Resources.quaylia;
+            //btnThoat.Image = Properties.Resources.quaylia;
             btnThoat.Location = new Point(1288, 6);
             btnThoat.Name = "btnThoat";
             btnThoat.ShadowDecoration.CustomizableEdges = customizableEdges36;

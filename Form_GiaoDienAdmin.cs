@@ -31,7 +31,7 @@ namespace HeThongThiTracNghiem
 
         private void button7_Click(object sender, EventArgs e)
         {
-            Form_QuanLyKetQuaThi form = Form_QuanLyKetQuaThi();
+            Form_QuanLyKetQuaThi form = new Form_QuanLyKetQuaThi();
             form.Show();
             this.Close();
         }

@@ -63,15 +63,15 @@ namespace HeThongThiTracNghiem
 
                                 if (vaiTro == "Thi sinh")
                                 {
-                                    //Form_thisinh f = new Form_thisinh();
-                                    //f.Show();
-                                    //this.Hide();
+                                    Form_GiaoDienHocSinh f = new Form_GiaoDienHocSinh();
+                                    f.Show();
+                                    this.Hide();
                                 }
                                 else if (vaiTro == "Admin")
                                 {
-                                    //Form_admin f = new Form_admin();
-                                    //f.Show();
-                                    //this.Hide();
+                                    Form_GiaoDienAdmin f = new Form_GiaoDienAdmin();
+                                    f.Show();
+                                    this.Hide();
                                 }
                                 else
                                 {
