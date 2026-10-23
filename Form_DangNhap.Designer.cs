@@ -71,7 +71,7 @@
             linkLabel1.AutoSize = true;
             linkLabel1.BackColor = Color.Transparent;
             linkLabel1.LinkColor = Color.Black;
-            linkLabel1.Location = new Point(352, 158);
+            linkLabel1.Location = new Point(352, 160);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(89, 15);
             linkLabel1.TabIndex = 5;
