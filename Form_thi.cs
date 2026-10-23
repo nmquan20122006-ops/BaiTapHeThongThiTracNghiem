@@ -73,7 +73,7 @@ namespace HeThongThiTracNghiem
             {
                 MessageBox.Show("Chưa có dữ liệu bài thi. Vui lòng bắt đầu lại từ Form môn thi.",
                     "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                Close();
+                
                 return;
             }
 
@@ -150,7 +150,7 @@ namespace HeThongThiTracNghiem
             CapNhatDongHo();
         }
 
-        private void HienThiCau(int index)
+        public void HienThiCau(int index)
         {
             if (index < 0 || index >= chamthi.Danhsach.Count)
             {

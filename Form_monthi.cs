@@ -8,20 +8,19 @@ namespace HeThongThiTracNghiem
 {
     public partial class Form_monthi : Form
     {
-        // Chuỗi kết nối CSDL
+     
         public string connString = "Server=100.78.158.91,1433;Database=HETHONGTHITRACNGHIEM;User Id=NhomHeThongThiTracNghiem;Password=123456;TrustServerCertificate=True;";
 
-        // Khai báo biến lưu thông tin thí sinh
+      
         private string tenThiSinh = "";
         private string maTaiKhoan = "";
 
-        // Hàm khởi tạo mặc định
+     
         public Form_monthi()
         {
             InitializeComponent();
         }
 
-        // Hàm khởi tạo nhận tên thí sinh từ Form Đăng Nhập truyền sang
         public Form_monthi(string hoTen, string maTK)
         {
             InitializeComponent();
@@ -31,10 +30,9 @@ namespace HeThongThiTracNghiem
 
         private void Form_monthi_Load(object sender, EventArgs e)
         {
-            // 1. Cập nhật label xin chào khớp với tên thí sinh đăng nhập
+       
             if (!string.IsNullOrEmpty(tenThiSinh))
             {
-                // Giả sử tên label ở panel trên là lbl_XinChao hoặc guna2HtmlLabel1
                 lbl_Xinchao.Text = "Xin chào, " + tenThiSinh;
             }
             else
@@ -42,11 +40,13 @@ namespace HeThongThiTracNghiem
                 lbl_Xinchao.Text = "Xin chào, Thí sinh";
             }
 
-            // 2. Load danh sách đề thi khi mở form
+
             LoadDanhSachDeThi("");
+        
+            guna2Button1.Click += guna2Button1_Click;
         }
 
-        // Hàm load danh sách đề thi lên DataGridView
+     
         private void LoadDanhSachDeThi(string tuKhoa)
         {
             using (SqlConnection ketNoi = new SqlConnection(connString))
@@ -80,16 +80,13 @@ namespace HeThongThiTracNghiem
                 }
             }
         }
-
-        // Nút "Tìm kiếm đề thi"
         private void btn_TimKiemDeThi_Click(object sender, EventArgs e)
         {
-            string tuKhoa = btn_TimKiemDeThi.Text.Trim();
+            string tuKhoa = txt_TimKiemCauHoi.Text.Trim();
             LoadDanhSachDeThi(tuKhoa);
         }
 
-        // Nút "Bắt đầu thi" (Chọn đề từ DataGridView và chuyển sang Form_thi)
-        private void btn_BatDauThi_Click(object sender, EventArgs e)
+        private void guna2Button1_Click(object sender, EventArgs e)
         {
             if (dgv_DanhSachDeThi.SelectedRows.Count == 0)
             {
@@ -99,24 +96,18 @@ namespace HeThongThiTracNghiem
 
             int maDeThi = Convert.ToInt32(dgv_DanhSachDeThi.SelectedRows[0].Cells["Mã đề"].Value);
 
-            // Mở form thi và truyền mã đề cùng thông tin thí sinh sang
-            //Form_thi formThi = new Form_thi(maDeThi, tenThiSinh);
-            //formThi.Show();
-            //this.Hide();
+            Form_thi formThi = new Form_thi();
+            formThi.Show();
+            this.Hide();
         }
 
-        // Nút "Thoát"
-        private void btn_Thoat_Click(object sender, EventArgs e)
-        {
-
-        }
-
+   
         private void guna2Button2_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Bạn có chắc chắn muốn thoát khỏi giao diện chọn đề thi?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                Form_GiaoDienHocSinh formDN = new Form_GiaoDienHocSinh();
-                formDN.Show();
+                Form_GiaoDienHocSinh formHS = new Form_GiaoDienHocSinh();
+                formHS.Show();
                 this.Close();
             }
         }
@@ -129,6 +120,33 @@ namespace HeThongThiTracNghiem
         private void dgv_DanhSachDeThi_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void guna2Button1_Click_1(object sender, EventArgs e)
+        {
+            if (dgv_DanhSachDeThi.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn một đề thi trong bảng để bắt đầu làm bài!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int maDeThi = Convert.ToInt32(dgv_DanhSachDeThi.SelectedRows[0].Cells["Mã đề"].Value);
+
+         
+            int tkId = !string.IsNullOrEmpty(this.maTaiKhoan) ? int.Parse(this.maTaiKhoan) : 1; 
+
+            bool ketQuaBatDau = chamthi.batdau(maDeThi, tkId);
+
+            if (ketQuaBatDau)
+            {
+                Form_thi formThi = new Form_thi();
+                formThi.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show(chamthi.LoiCuoi ?? "Không thể bắt đầu bài thi.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

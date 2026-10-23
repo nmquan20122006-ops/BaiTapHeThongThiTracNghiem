@@ -108,6 +108,7 @@ namespace HeThongThiTracNghiem
             guna2Button1.Size = new Size(94, 36);
             guna2Button1.TabIndex = 43;
             guna2Button1.Text = "Bắt đầu thi";
+            guna2Button1.Click += guna2Button1_Click_1;
             // 
             // guna2HtmlLabel1
             // 

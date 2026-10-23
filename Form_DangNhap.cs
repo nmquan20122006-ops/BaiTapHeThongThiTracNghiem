@@ -14,7 +14,12 @@ namespace HeThongThiTracNghiem
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            DialogResult result = MessageBox.Show("Vui long lien he admin", "Xac nhan", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if(result == DialogResult.OK)
+            {
 
+                return;
+            }
         }
         private void guna2Button1_Click(object sender, EventArgs e)
         {

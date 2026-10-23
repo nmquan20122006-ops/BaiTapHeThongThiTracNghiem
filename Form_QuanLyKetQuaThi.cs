@@ -109,7 +109,7 @@ namespace HeThongThiTracNghiem
 
                             dgv_DanhSachKetQuaTheoThiSinh.Rows.Add(stt, maBaiThi, hoTen, taiKhoan, monThi, diem, thoiGianLam);
                             dgv_1.Rows.Add(stt, maBaiThi, hoTen, taiKhoan, monThi, diem, thoiGianLam);
-                            dgv_2.Rows.Add(stt, maBaiThi, hoTen, taiKhoan, monThi, diem, thoiGianLam);
+                            
                             stt++;
                         }
                     }
@@ -339,7 +339,7 @@ namespace HeThongThiTracNghiem
             cbo_MucDiem2.Items.Add("8");
             cbo_MucDiem2.Items.Add("9");
 
-            cbo_MucDiem2 .SelectedIndex = 0;
+            cbo_MucDiem2.SelectedIndex = 0;
         }
 
         private void guna2Button2_Click(object sender, EventArgs e)
@@ -350,7 +350,6 @@ namespace HeThongThiTracNghiem
         {
             dgv_DanhSachKetQuaTheoThiSinh.Rows.Clear();
             dgv_1.Rows.Clear();
-            dgv_2.Rows.Clear();
 
             string maDeThi = tbx_maDeThi.Text.Trim();
 
@@ -391,7 +390,7 @@ namespace HeThongThiTracNghiem
 
                             dgv_DanhSachKetQuaTheoThiSinh.Rows.Add(stt, maBaiThi, hoTen, taiKhoan, monThi, diem, thoiGianLam);
                             dgv_1.Rows.Add(stt, maBaiThi, hoTen, taiKhoan, monThi, diem, thoiGianLam);
-                            dgv_2.Rows.Add(stt, maBaiThi, hoTen, taiKhoan, monThi, diem, thoiGianLam);
+                           
                             stt++;
                         }
                     }
@@ -453,6 +452,11 @@ namespace HeThongThiTracNghiem
                 HienThiChiTietBaiThi(maBaiThi);
                 LoadTongQuanCauTraLoi(maBaiThi);
             }
+        }
+
+        private void guna2HtmlLabel7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -11,7 +11,7 @@ namespace HeThongThiTracNghiem
 {
     public partial class Form_Quanlytaikhoan : Form
     {
-        string connectionString = "Data Source=localhost;Initial Catalog=Hethongthitracnghiem;Integrated Security=True;Trust Server Certificate=True";
+        string connectionString = "Server=100.78.158.91,1433;Database=HETHONGTHITRACNGHIEM;User Id=NhomHeThongThiTracNghiem;Password=123456;TrustServerCertificate=True;";
         public Form_Quanlytaikhoan()
         {
             InitializeComponent();
